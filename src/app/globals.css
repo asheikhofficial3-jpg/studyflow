@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-ink: #060b1d;
+  --color-navy-950: #070d1f;
+  --color-navy-900: #0a142e;
+  --color-navy-850: #0d1938;
+  --color-navy-800: #111f45;
+  --color-navy-700: #1b2c5c;
+  --color-line: #22315f;
+  --color-mint-300: #7df0cd;
+  --color-mint-400: #3ee6b6;
+  --color-mint-500: #1fd6a2;
+  --color-violet-soft: #9a8cff;
+  --color-sf-text: #eaf0ff;
+  --color-sf-muted: #9fb0d8;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+}
+
+html, body { background: #070d1f; color: #eaf0ff; }
+body { font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif; }
+* { scrollbar-width: thin; scrollbar-color: #22315f transparent; }
+:focus-visible { outline: 2px solid #3ee6b6; outline-offset: 2px; border-radius: 6px; }
+
+.card { background: linear-gradient(180deg, #0d1938, #0a142e); border: 1px solid #22315f; border-radius: 18px; box-shadow: 0 12px 32px rgba(2,6,20,.45); }
+.btn-primary { background: linear-gradient(135deg, #1fd6a2, #17b8a6); color: #04241a; font-weight: 700; border-radius: 12px; padding: 0.55rem 1rem; transition: filter .15s ease, transform .15s ease; display: inline-flex; align-items: center; gap: .45rem; cursor: pointer; }
+.btn-primary:hover { filter: brightness(1.07); }
+.btn-primary:active { transform: scale(.98); }
+.btn-ghost { border: 1px solid #22315f; color: #eaf0ff; border-radius: 12px; padding: 0.55rem 1rem; transition: background .15s ease; display: inline-flex; align-items: center; gap: .45rem; cursor: pointer; background: transparent; }
+.btn-ghost:hover { background: #111f45; }
+.btn-danger { border: 1px solid #5c2233; color: #ffb4c0; border-radius: 12px; padding: 0.55rem 1rem; display: inline-flex; align-items: center; gap: .45rem; cursor: pointer; background: transparent; }
+.btn-danger:hover { background: #2a0f1a; }
+.input { width: 100%; background: #070d1f; border: 1px solid #22315f; border-radius: 12px; padding: 0.6rem 0.8rem; color: #eaf0ff; }
+.input::placeholder { color: #63749c; }
+select.input option { background: #0a142e; }
+.badge { font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; border-radius: 999px; padding: .2rem .55rem; border: 1px solid #22315f; white-space: nowrap; }
+
+.orb-wrap { position: relative; display: grid; place-items: center; }
+.orb { position: relative; border-radius: 9999px; background:
+  radial-gradient(circle at 32% 28%, rgba(255,255,255,.85) 0 6%, rgba(125,240,205,.55) 12%, transparent 34%),
+  radial-gradient(circle at 72% 78%, rgba(154,140,255,.55), transparent 46%),
+  radial-gradient(circle at 50% 50%, #5ff2c8 0%, #1fd6a2 34%, #0e7f8c 62%, #123a6e 100%);
+  box-shadow: 0 0 44px rgba(62,230,182,.45), inset 0 -14px 30px rgba(6,20,50,.55), inset 0 10px 22px rgba(255,255,255,.28);
+  animation: orb-float 5.5s ease-in-out infinite; }
+.orb-ring { position: absolute; border-radius: 9999px; border: 1.5px solid rgba(125,240,205,.5); transform: rotateX(68deg) rotateZ(-14deg); pointer-events: none; }
+.orb-ring.r2 { border-color: rgba(154,140,255,.45); transform: rotateX(72deg) rotateZ(22deg); }
+.orb-wrap[data-state="planning"] .orb-ring { animation: ring-spin 3.2s linear infinite; }
+.orb-wrap[data-state="executing"] .orb-ring { animation: ring-spin 1.6s linear infinite; }
+.orb-wrap[data-state="listening"] .orb { animation: orb-pulse 1.6s ease-in-out infinite; }
+.orb-wrap[data-state="success"] .orb { box-shadow: 0 0 70px rgba(62,230,182,.85), inset 0 -14px 30px rgba(6,20,50,.4), inset 0 10px 22px rgba(255,255,255,.35); }
+.orb-wrap[data-state="error"] .orb { background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.7) 0 6%, rgba(255,180,190,.5) 14%, transparent 36%), radial-gradient(circle at 50% 50%, #ffb4c0 0%, #e05d78 38%, #7c2340 70%, #2a0f2a 100%); box-shadow: 0 0 40px rgba(224,93,120,.4), inset 0 -14px 30px rgba(30,4,14,.55); animation: none; }
+@keyframes orb-float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-7px) } }
+@keyframes orb-pulse { 0%,100% { transform: scale(1) } 50% { transform: scale(1.06) } }
+@keyframes ring-spin { from { rotate: 0deg } to { rotate: 360deg } }
+@media (prefers-reduced-motion: reduce) { .orb, .orb-ring { animation: none !important; } }
+.reduced-motion .orb, .reduced-motion .orb-ring { animation: none !important; }
+
+.progress-track { height: 8px; border-radius: 999px; background: #111f45; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #1fd6a2, #7df0cd); transition: width .4s ease; }

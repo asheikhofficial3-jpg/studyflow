@@ -1,0 +1,28 @@
+{
+  "name": "studyflow-mcp",
+  "version": "1.0.0",
+  "description": "Self-hosted MCP server exposing StudyFlow study-planner agent tools (Alexa+ track, Build Ship Shape: Amazon Developer Hackathon)",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/http.js",
+    "start:stdio": "node dist/stdio.js",
+    "test": "node test/smoke.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2"
+  },
+  "type": "module",
+  "bin": {
+    "studyflow-mcp-stdio": "./dist/stdio.js",
+    "studyflow-mcp-http": "./dist/http.js"
+  }
+}
